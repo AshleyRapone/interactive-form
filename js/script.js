@@ -154,13 +154,34 @@ function valid_credit_card() {
   const creditCardRegEx = /\d{13,16}/g;
   let count = 0
   if (cvvRegEx.test(cvv)) {
+    document.getElementById('cvv').parentNode.classList.add('valid');
+    document.getElementById('cvv').parentNode.classList.remove('not-valid');
+    document.getElementById('cvv').parentNode.lastElementChild.style.display = '';
     count +=1;
+  } else {
+    document.getElementById('cvv').parentNode.classList.add('not-valid');
+    document.getElementById('cvv').parentNode.classList.remove('valid');
+    document.getElementById('cvv').parentNode.lastElementChild.style.display = 'block';
   }
   if (zipcodeRegEx.test(zipcode)) {
+    document.getElementById('zip').parentNode.classList.add('valid');
+    document.getElementById('zip').parentNode.classList.remove('not-valid');
+    document.getElementById('zip').parentNode.lastElementChild.style.display = '';
     count +=1;
+  } else {
+    document.getElementById('zip').parentNode.classList.add('not-valid');
+    document.getElementById('zip').parentNode.classList.remove('valid');
+    document.getElementById('zip').parentNode.lastElementChild.style.display = 'block';
   }
   if (creditCardRegEx.test(creditCardNumber)) {
+    document.getElementById('cc-num').parentNode.classList.add('valid');
+    document.getElementById('cc-num').parentNode.classList.remove('not-valid');
+    document.getElementById('cc-num').parentNode.lastElementChild.style.display = '';
     count +=1;
+  } else {
+    document.getElementById('cc-num').parentNode.classList.add('not-valid');
+    document.getElementById('cc-num').parentNode.classList.remove('valid');
+    document.getElementById('cc-num').parentNode.lastElementChild.style.display = 'block';
   }
   return count === 3;
 }
@@ -172,19 +193,36 @@ const form = document.querySelector('form');
 form.addEventListener('submit', (event) => {
   let count = 0
   if (!valid_name()) {
-    console.log('no valid name');
+    document.getElementById('name').parentNode.classList.add('not-valid');
+    document.getElementById('name').parentNode.classList.remove('valid');
+    document.getElementById('name').parentNode.lastElementChild.style.display = 'block';
     count +=1;
+  } else {
+    document.getElementById('name').parentNode.classList.add('valid');
+    document.getElementById('name').parentNode.classList.remove('not-valid');
+    document.getElementById('name').parentNode.lastElementChild.style.display = '';
   }
   if (!valid_email()) {
-    console.log('no valid email')
+    document.getElementById('email').parentNode.classList.add('not-valid');
+    document.getElementById('email').parentNode.classList.remove('valid');
+    document.getElementById('email').parentNode.lastElementChild.style.display = 'block';
     count +=1;
+  } else {
+    document.getElementById('email').parentNode.classList.add('valid'); 
+    document.getElementById('email').parentNode.classList.remove('not-valid');
+    document.getElementById('email').parentNode.lastElementChild.style.display = '';
   }
   if (!activites_registered()) {
-    console.log('no activites registered')
+    document.getElementById('activities').classList.add('not-valid');
+    document.getElementById('activities').classList.remove('valid');
+    document.getElementById('activities').lastElementChild.style.display = 'block';
     count +=1;
+  } else {
+    document.getElementById('activities').classList.add('valid');
+    document.getElementById('activities').classList.remove('not-valid');
+    document.getElementById('activities').lastElementChild.style.display = '';
   }
   if (!valid_credit_card()) {
-    console.log('no valid card')
     count +=1;
   }
   if (count > 0) {
@@ -192,4 +230,16 @@ form.addEventListener('submit', (event) => {
   }
 });
 
-//The "Register for Activities" section must have at least one activity selected.
+// Make the focus states of the activities more obvious to all users
+const activitiesBoxes = document.getElementById('activities-box').children;
+for (let i = 0; i < activitiesBoxes.length; i++) {
+  const checkbox = activitiesBoxes[i].getElementsByTagName('input')[0];
+  checkbox.addEventListener('focus', (event) => {
+      event.target.parentNode.classList.add('focus');
+  })
+  checkbox.addEventListener('blur', (event) => {
+    document.getElementsByClassName('focus')[0].removeAttribute('class');
+  })
+}
+
+
