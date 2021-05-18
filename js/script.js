@@ -153,7 +153,7 @@ function setupPaymentInfo() {
 /*
 This function will return true or false depending on if the name input is not left empty
 */
-function valid_name() {
+function validName() {
   return document.getElementById('name').value !== '';
 }
 
@@ -162,7 +162,7 @@ This function will return true or false depending on if the email input meets th
 Email criteria is as follows:
 At least one character, followed by "@", followed by at least one character and a ".com" for the domain name.
 */
-function valid_email() {
+function validEmail() {
   const email = document.getElementById('email').value
   const emailRegex = /\w+@[a-z]+(.com)+/ig
   return emailRegex.test(email)
@@ -171,7 +171,7 @@ function valid_email() {
 /*
 This function will return true or false depeding on if the count of activities is greater than 0
 */
-function activites_registered() {
+function activitesRegistered() {
   const activitiesBox = document.getElementById('activities-box').children;
   count = 0
   // Loop through the activities 
@@ -189,7 +189,7 @@ This function will return true or false depending on if the count equals 3
 There are 3 if statements in the function that test if the credit card number, zipcode and cvv are valid
 If all 3 if statements are true then the count will be 3 and evaluate to true
 */
-function valid_credit_card() {
+function validCreditCard() {
   // Get the values entered into the input box for the credit card number, zipcode and cvv
   const creditCardNumber = document.getElementById('cc-num').value;
   const zipcode = document.getElementById('zip').value;
@@ -250,7 +250,7 @@ function validateForm() {
   form.addEventListener('submit', (event) => {
     let count = 0
     // If form does not have valid name then 
-    if (!valid_name()) {
+    if (!validName()) {
       // Mark the name input as not-valid and display the hint message as well as increase count
       document.getElementById('name').parentNode.classList.add('not-valid');
       document.getElementById('name').parentNode.classList.remove('valid');
@@ -263,7 +263,7 @@ function validateForm() {
       document.getElementById('name').parentNode.lastElementChild.style.display = '';
     }
     // If email address is not valid
-    if (!valid_email()) {
+    if (!validEmail()) {
       // Mark the email input as not-valid and display the hint message as well as increase count
       document.getElementById('email').parentNode.classList.add('not-valid');
       document.getElementById('email').parentNode.classList.remove('valid');
@@ -276,7 +276,7 @@ function validateForm() {
       document.getElementById('email').parentNode.lastElementChild.style.display = '';
     }
     // If the activities registered section is not valid
-    if (!activites_registered()) {
+    if (!activitesRegistered()) {
       // Mark the activties registered section as as not-valid and display the hint message as well as increase count
       document.getElementById('activities').classList.add('not-valid');
       document.getElementById('activities').classList.remove('valid');
@@ -289,7 +289,7 @@ function validateForm() {
       document.getElementById('activities').lastElementChild.style.display = '';
     }
     // If the credit card is not valid
-    if (!valid_credit_card()) {
+    if (!validCreditCard()) {
       // Increase count
       count +=1;
     }
