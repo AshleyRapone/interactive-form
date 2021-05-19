@@ -58,9 +58,11 @@ function setupTShirtInfo() {
           continue
       } // If the user selects the t-shirt design that the color is associated with then show that color option
         else if (shirtDesignOption === dataThemeAttribute) {
+          shirtColorOptions[i].selected = true;
           shirtColorOptions[i].hidden = false
       } // If the user selects the t-shirt design that the color is not associated with then don't show that color option
         else if (shirtDesignOption !== dataThemeAttribute) {
+          shirtColorOptions[i].selected = false; 
           shirtColorOptions[i].hidden = true;
       }
     }
