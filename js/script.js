@@ -248,6 +248,8 @@ function validateForm() {
   const form = document.querySelector('form');
   // Listen for when the user submits the form
   form.addEventListener('submit', (event) => {
+    // Get the user's selected payment type
+    const paymentType = document.getElementById('payment').value;
     let count = 0
     // If form does not have valid name then 
     if (!validName()) {
@@ -288,16 +290,19 @@ function validateForm() {
       document.getElementById('activities').classList.remove('not-valid');
       document.getElementById('activities').lastElementChild.style.display = '';
     }
-    // If the credit card is not valid
-    if (!validCreditCard()) {
-      // Increase count
-      count +=1;
+    // If the payment type is credit-card
+    if (paymentType === 'credit-card') {
+      // If the credit card is not valid
+      if (!validCreditCard()) {
+        // Increase count
+        count +=1;
+      }
     }
     // If count is more than 0 then prevent the form from submitting
     if (count > 0) {
       event.preventDefault();
     }
-  });
+});
 }
 
 /*
